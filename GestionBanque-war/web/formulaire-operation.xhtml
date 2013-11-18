@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./index.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="header">Traitements des operations</ui:define>
+    <f:metadata>
+        <f:viewParam name="id" value="#{compteBeans.id}"/>
+    </f:metadata>
+    
+    <ui:define name="content">
+        <f:view>
+            <h:form id="form-sup">
+                <p:panel id="idpanel-supp" header="Soustraire Montant">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel for="idcompte" value="Id"/>
+                        <h:inputText id="idcompte" value="#{compteBeans.id}" required="true" readonly="true"/>
+                        <h:outputLabel for="type" value="Type Operation"/>
+                        <h:selectOneMenu id="type" value="#{compteBeans.typeOpera}">
+                            <f:selectItem itemValue="0" itemLabel="Selectionner un type"/>
+                            <f:selectItem itemLabel="Debiter" itemValue="1"/>
+                            <f:selectItem itemLabel="Crediter" itemValue="2"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel for="idmontant" value="Montant"/>
+                        <h:inputText id="idmontant" value="#{compteBeans.montant}" required="true" label="le montant"/>
+                    </p:panelGrid>
+                </p:panel>
+                <p:commandButton value="Valider" update="idpanel-supp" action="#{compteBeans.executerOperation()}"/>
+            </h:form>
+        </f:view>
+    </ui:define>
+    <h:outputFormat>
+        <f:viewParam name="id" value="#{compteBeans.id}"/>
+    </h:outputFormat>
+</ui:composition>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./index.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <f:view>
+            <h:form>
+                <p:panel header="Transfert entre deux compte">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel for="idDebiteur" value="Compte Debiteur"/>
+                        <h:selectOneMenu id="idDebiteur" value="#{compteBeans.idDebiteur}">
+                            <f:selectItem itemLabel="Selectionner le compte a Debiter" itemValue=""/>
+                            <f:selectItems value="#{compteBeans.allComptes}" var="item" itemLabel="#{item.id}" itemValue="#{item.id}"/> 
+                        </h:selectOneMenu>
+                        <h:outputLabel for="idCrediteur" value="Compte Crediteur"/>
+                        <h:selectOneMenu id="idCrediteur" value="#{compteBeans.idCrediteur}">
+                            <f:selectItem itemLabel="Selectionner le compte à crediter" itemValue=""/>
+                            <f:selectItems value="#{compteBeans.allComptes}" var="item" itemLabel="#{item.id}" itemValue="#{item.id}"/> 
+                        </h:selectOneMenu>
+                        <h:outputLabel for="montant" value="Montant"/>
+                        <h:inputText id="montant" validatorMessage="#{compteBeans.montant}"/>
+                    </p:panelGrid>
+                    <h:commandButton value="Valider" action="#"/>
+                </p:panel>
+            </h:form>
+        </f:view>
+    </ui:define>
+
+</ui:composition>
